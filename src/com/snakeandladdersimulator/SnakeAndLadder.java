@@ -12,11 +12,13 @@ public class SnakeAndLadder
     public static void main(String[] args)
     {
         int playerPosition=0;
+        int dicePlayed=0;
 
         System.out.println("Starting Position is ::"+START_POSITION);
 
-        while(playerPosition <= WIN)
+        while(playerPosition < WIN)
         {
+            dicePlayed++;
             int ROLL_DICE = (int) (Math.floor(Math.random() * 10) % 6) + 1;
             System.out.println("After Rolling Dice We Get ::" + ROLL_DICE);
             int playerCheckOption = (int) (Math.random() * 3) + 1;
@@ -28,17 +30,10 @@ public class SnakeAndLadder
                     break;
 
                 case LADDER:
-                    playerPosition = playerPosition + ROLL_DICE;
-                    System.out.println("Congratulations !! You Got the ladder your position will be increased by " + ROLL_DICE);
-                    if(playerPosition >= WIN)
+                    if((playerPosition + ROLL_DICE) <= WIN)
                     {
-                        playerPosition = playerPosition - ROLL_DICE;
-                    }
-                    else if (playerPosition == WIN)
-                    {
-                        System.out.println("Player won");
-                        System.out.println("Position :: "+playerPosition);
-                        System.exit(0);
+                        playerPosition = playerPosition + ROLL_DICE;
+                        System.out.println("Congratulations !! You Got the ladder your position will be increesed by "+ROLL_DICE);
                     }
                     break;
 
@@ -59,5 +54,6 @@ public class SnakeAndLadder
             }
             System.out.println("Position :: "+playerPosition);
         }
+        System.out.println("We just make "+dicePlayed+" Number of dice to win the game");
     }
 }
